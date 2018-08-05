@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <title>EATS</title>
+</head>
+<body>
+    <div class="container">
+        <div class="jumbotron">
+            <div class="container">
+                <h1 class="display-4">EATS</h1>
+                <p class="lead">let's eat.</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="card bg-light mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Hungry?</h5>
+                    <p class="card-text">make a reservation!</p>
+                    <a href="/reserve" class="btn btn-primary" id="reserve">go</a>
+                </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="card bg-light mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Not sure?</h5>
+                    <p class="card-text">view current tables!</p>
+                    <a href="/view" class="btn btn-primary" id="wait">go</a>
+                </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" id="view">
+            <a type="button" class="btn btn-light" id="apiTable">API Table Link</a>
+            <a type="button" class="btn btn-light" id="apiID">API Wait List</a>
+            <a type="button" class="btn btn-light" id="github">Github Repo</a>
+        </div>
+    </div>
+</body>
+</html>

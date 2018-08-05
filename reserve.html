@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <title>Reserve</title>
+</head>
+<body>
+    <div class="container">
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-4">EATS</h1>
+                <p class="lead">let's eat.</p>
+            </div>
+        </div>
+        
+        <div class="card bg-light">
+            <div class="card-header">Reserve!!</div>
+            <div class="card-body">
+                <form>
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="name" class="form-control" id="nameInput">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="number" class="form-control" id="phoneInput">
+                    </div>
+                    <div class="form-group">
+                        <label for="email" for="emailInput">Email</label>
+                        <input type="text" class="form-control" id="emailInput">
+                    </div>
+                    <div class="form-group">
+                        <label for="id" for="idInput">Unique Id</label>
+                        <input type="text" class="form-control" id="idInput">
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="addTable">Reserve</button>
+                </form>
+            </div>
+        </div>
+        <div class="row" id="view">
+            <a href="/api/tables" type="button" class="btn btn-light" id="apiTable">API Table Link</a>
+            <a href="/api/waiting" type="button" class="btn btn-light" id="apiID">API Wait List</a>
+            <a type="button" class="btn btn-light" id="github">Github Repo</a>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $("#addTable").on("click", function(event) {
+            event.preventDefault();
+
+            var newTable = {
+                name: $("#nameInput").val().trim(),
+                phone: $("#phoneInput").val().trim(),
+                email: $("#emailInput").val().trim(),
+                id: $("#idInput").val().trim()
+            };
+            
+            
+            $.ajax({
+                url: '/api/tables',
+                method: 'post',
+                data: newTable,
+                success: function (data) 
+            {
+                console.log("posted");
+            }
+            });
+            $.ajax({
+                url: '/api/waiting',
+                method: 'post',
+                data: newTable,
+                success: function (data) 
+            {
+                console.log("posted");
+            }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <title>View</title>
+</head>
+<body>
+    <div class="container">
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-4">EATS</h1>
+                <p class="lead">let's eat.</p>
+            </div>
+        </div>
+        <div class="card bg-light mb-3">
+            <div class="card-header">Current Reservations</div>
+            <div class="card-body" id="currentReservations"></div>
+        </div>
+        <div class="card bg-light mb-3">
+            <div class="card-header">Waiting List</div>
+            <div class="card-body" id="waitingList"></div>
+        </div>
+        <div class="row" id="view">
+            <a type="button" class="btn btn-light" id="clearTable">Clear Table</a>
+            <a href="/api/tables" type="button" class="btn btn-light" id="apiTable">API Table Link</a>
+            <a href="/api/waiting" type="button" class="btn btn-light" id="apiID">API Wait List</a>
+            <a href="/github" type="button" class="btn btn-light" id="github">Github Repo</a>
+        </div>
+    </div>
+    <script>
+        $.ajax({
+                url: '/api/tables',
+                method: 'get',
+                success: function(data) 
+            {
+                for (var i=0; i < data.length; i++) {
+                    $("#currentReservations").append(`<div class="card"><div class="card-body" id="list">${data[i].id}</div></div>`);
+                };
+            }
+        });
+        $.ajax({
+                url: '/api/waiting',
+                method: 'get',
+                success: function(data) 
+            {
+                for (var i=0; i < data.length; i++) {
+                    $("#waitingList").append(`<div class="card"><div class="card-body" id="list">${data[i].id}</div></div>`);
+                };
+            }
+        });
+
+        $("#clearTable").on("click", function(event) {
+            event.preventDefault();
+
+            $.ajax({
+                    url: '/api/clear',
+                    method: 'post',
+                    success: function(data)
+                {
+                    console.log("cleared tables");
+                }
+            });
+    
+        })
+    </script>
+</body>
+</html>
